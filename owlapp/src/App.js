@@ -5,12 +5,12 @@ import ReactDOM from 'react-dom';
 function App() {
   return (
     <main className='App'>
-      {participants.map(el => Person({
+      {/* {participants.map(el => Person({
   name: el.name,
   avatar: el.avatar,
   inSession: el.inSession,
   onStage: el.onStage
-}))}
+}))} */ Badges(participants.filter(el => el.inSession))}
     </main>
   );
 }
@@ -66,24 +66,61 @@ const participants = [
 ];
 
 
+
+// if (inSession === false) {
+//   return <li className="red"></li>
+// } else if(inSession === true) {
+//   return <li className="green"></li>
+// }
+
+// participants.filter(el => el.onStage)
+
+
+// function Person(props) {
+//   return (
+//     <div className='Person'>
+        
+//       <li>{props.name}
+//       <img src={props.avatar} alt="avatar" />
+//       <span {...props.inSession} />
+//       <span {...props.onStage}/>
+//       </li>
+//     </div>
+//   )
+// }
+
 function Person(props) {
   return (
-    <div className='Person'>
-        
-      <li>{props.name}
+    <li className='Person'>
       <img src={props.avatar} alt="avatar" />
-      <span {...props.inSession} />
-      <span {...props.onStage}/>
-      </li>
-    </div>
+      {props.inSession}
+      {props.onStage}
+      {props.name}
+    </li>
   )
 }
 
+function Badges(props) {
+  return (
+      <ul className="persons">
+          {props.map((person) => 
+          <Person 
+          key={person.id}
+          name={person.name}
+          avatar={person.avatar}
+          inSession={person.inSession}
+          onStage={person.onStage}
+          />
+          )}
+          </ul>
+  );
+}
 
+// console.log(Badges(participants))
 
-console.log(participants.map(el => Person({
-  name: el.name,
-  avatar: el.avatar,
-  inSession: el.inSession,
-  onStage: el.onStage
-})))
+// console.log(participants.map(el => Person({
+//   name: el.name,
+//   avatar: el.avatar,
+//   inSession: el.inSession,
+//   onStage: el.onStage
+// })))
